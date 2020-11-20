@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="css">aspect-ratio</h1>
+
+<ul class="description">
+  <li>表示の際のアスペクト比を指定出来る</li>
+  <li class="caution">将来的な仕様です</li>
+</ul>
+
+<template class="playground">
+  <div class="box"></div>
+
+  <style>
+    .box {
+      aspect-ratio: 2 / 1;
+      background-color: #ff000080;
+    }
+  </style>
+</template>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  aspect-ratio。表示の縦横比を指定できます。
+  一応、将来的な仕様ですがchromeでは既に使えたりします。
+
+  今まで、こういう事にはpaddingがよく使われてきました。
+  paddingにはパーセント指定すると必ず横幅を基準にするという謎仕様があるからなんですが、 ただ使い勝手としてはちょっと微妙で。
+
+  それがようやくマトモにシンプルに実現できる。ありがたい事です。
+</div>

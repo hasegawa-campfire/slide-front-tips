@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="css">ダークモード</h1>
+
+<ul class="description">
+  <li>ダークモードは prefers-color-scheme というメディアクエリで判定できる</li>
+</ul>
+
+<template class="playground">
+  <div class="box"></div>
+  <div class="circle"></div>
+
+  <style>
+    :root {
+      --bg-color: #fff;
+      --border-color: #222;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #000;
+        --border-color: #fff;
+      }
+    }
+
+    body {
+      background-color: var(--bg-color);
+    }
+
+    .box {
+      background-color: var(--bg-color);
+      border: var(--border-color) 1px solid;
+      width: 200px;
+      height: 100px;
+    }
+
+    .circle {
+      background-color: var(--bg-color);
+      border: var(--border-color) 1px solid;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-top: 10px;
+    }
+</style>
+</template>
+
+<ul class="note">
+  <li>SVG内で使えばダークモード対応ファビコンが作れます</li>
+  <li>javascriptでもmatchMedia()で判定出来ます</li>
+</ul>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  CSSはメディアクエリでダークモードが分かるので、それで表示を切り替えたりするんですが、そこで先程のCSS変数が役に立ちます。
+  例えば、色の定義があって、ダークモードだとこっちを使う。
+  ただそれだけの事なんですが、Sassで同じことをやろうと思ったら結構頑張る必要があるんじゃないでしょうか。
+</div>

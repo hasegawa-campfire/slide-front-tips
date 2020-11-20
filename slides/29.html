@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="js">画像検出や音声認識など（おまけ）</h1>
+
+<ul class="description">
+  <li>カメラ映像の表示</li>
+</ul>
+
+<template class="playground" data-preview="none" data-pick="script">
+  <script type="x-example">
+    $video.srcObject = await navigator.mediaDevices.getUserMedia({ video: true })
+  </script>
+</template>
+
+<ul class="description">
+  <li
+    >顔検出<span class="caution">（Chromeのみ＆要フラグ）</span>
+    <div class="flag">chrome://flags/#enable-experimental-web-platform-features</div>
+  </li>
+</ul>
+
+<template class="playground" data-preview="none" data-pick="script">
+  <script type="x-example">
+    const faceDetector = new FaceDetector()
+    const faces = await faceDetector.detect($video)
+    console.log(faces[0].boundingBox)
+  </script>
+</template>
+
+<ul class="description">
+  <li>音声認識<span class="caution">（Chromeのみ）</span></li>
+</ul>
+
+<template class="playground" data-preview="none" data-pick="script">
+  <script type="x-example">
+    const recognition = new SpeechRecognition()
+    recognition.onresult =
+      (e) => console.log(e.results[0][0].transcript)
+    recognition.start()
+  </script>
+</template>
+
+<script src="common.js"></script>
+<style>
+  .flag {
+    font-size: 70%;
+    margin-left: 1.4em;
+    line-height: 1;
+  }
+</style>
+
+<div class="slide-note">
+  オマケです。画像検出や音声認識はブラウザ上でも出来ます、という紹介です。
+  カメラの映像を取り込んで、顔を検出。そして音声認識。それぞれ数行で簡単に利用できます。
+
+  とは言え、現状はかなり限定された環境でしか動きません。なのでオマケです。
+
+  ちなみに画像検出は、テキストやQRコードの検出もあるようです。顔よりは幾分、実用的な気がしますね。
+</div>

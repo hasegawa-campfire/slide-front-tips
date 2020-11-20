@@ -1,0 +1,116 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="css">inputでも疑似要素は使える</h1>
+
+<ul class="description">
+  <li>inputやtextareaなどは appearance: none を指定すると ::before 等の疑似要素が利用できる</li>
+</ul>
+
+<template class="playground">
+  <label>
+    <input type="checkbox" checked>
+    チェックボックス
+  </label>
+
+  <label>
+    <input type="radio" name="radio" checked>
+    ラジオボタン1
+  </label>
+
+  <label>
+    <input type="radio" name="radio">
+    ラジオボタン2
+  </label>
+
+  <style>
+    label {
+      display: block;
+      margin: 10px 0;
+      cursor: pointer;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1em;
+      height: 1em;
+      border: #666 2px solid;
+      background-color: #fff;
+      outline: none;
+      color: #2a4eff;
+      vertical-align: middle;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    input[type="checkbox"]:active,
+    input[type="radio"]:active {
+      background-color: #dfe5ff;
+    }
+
+    input[type="checkbox"]::before,
+    input[type="radio"]::before {
+      content: '';
+      display: block;
+    }
+
+    input[type="checkbox"]:checked::before,
+    input[type="radio"]:checked::before {
+      transition: all 0.2s;
+    }
+
+    input[type="checkbox"] {
+      border-radius: 0.1em;
+    }
+
+    input[type="checkbox"]::before {
+      width: 0.5em;
+      height: 0.8em;
+      border-right: 4px currentColor solid;
+      border-bottom: 4px currentColor solid;
+      transform: translate(-50%, -10%) scale(0) rotate(0deg);
+      transform-origin: right bottom;
+    }
+
+    input[type="checkbox"]:checked::before {
+      transform: translate(-50%, -10%) scale(1) rotate(45deg);
+    }
+
+    input[type="radio"] {
+      border-radius: 50%;
+    }
+
+    input[type="radio"]::before {
+      width: 0.6em;
+      height: 0.6em;
+      border-radius: 50%;
+      background-color: currentColor;
+      transform: scale(0);
+    }
+
+    input[type="radio"]:checked::before {
+      transform: scale(1);
+    }
+  </style>
+</template>
+
+<ul class="note">
+  <li
+    >仕様なのかは不明らしいとのこと
+    <a href="https://coliss.com/articles/build-websites/operation/css/custom-styling-form-inputs.html" target="_blank">※参照1</a>
+    <a href="https://stackoverflow.com/questions/3286991/can-a-before-selector-be-used-with-a-textarea" target="_blank">※参照2</a>
+  </li>
+</ul>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  疑似要素の::beforeや::afterは簡単なデザインをつける時すごく便利なんですが、実はinputタグでも使うことが出来ます。
+  appearanceをnoneにすれば使えます。
+
+  これまでデザインのあるチェックボックスやラジオボタンは、input以外で頑張るしか無かったんですが、これを使えばinputだけで色々出来ます。
+  デザイン用にタグを増やすのはhtml的にはあまり良くないですから。活用していきたい所です。
+</div>

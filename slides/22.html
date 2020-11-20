@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="js">scrollIntoView()</h1>
+
+<ul class="description">
+  <li>特定の要素まで画面をスクロールさせる</li>
+  <li>その際にスムーススクロールも可能</li>
+  <li class="caution">スムーススクロールの指定はSafariで非対応</li>
+</ul>
+
+<template class="playground">
+  <button onclick="goto('.box')">スクロール</button>
+
+  <div class="box"></div>
+
+  <script>
+    function goto(sel) {
+      document.querySelector(sel).scrollIntoView({
+        behavior: 'smooth',
+      })
+    }
+  </script>
+
+  <style>
+    .box {
+      margin: 100vh 0;
+      width: 200px;
+      height: 200px;
+      background-color: #ff000080;
+    }
+  </style>
+</template>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  今度はスクロールをスクリプトから実行するものです。動きは同じですね。
+  まず、これまで特定の要素まで一発でスクロールさせる方法が無かったので、それだけでもありがたいんですが、さらにオプションでスムーススクロールも出来る。
+  便利になりますね。
+</div>

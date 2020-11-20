@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="css">max-content</h1>
+
+<ul class="description">
+  <li>内容を表示するために必要な広さの中で最大の値を表す</li>
+</ul>
+
+<template class="playground">
+  <a href="https://example.com" target="_blank">
+    中央揃えのリンク
+  </a>
+
+  <style>
+    a {
+      display: block;
+      width: max-content;
+      margin: 30px auto;
+      padding: 2px 10px;
+      border: 2px solid;
+      border-radius: 4px;
+    }
+  </style>
+</template>
+
+<ul class="note">
+  <li>min-contentもあります</li>
+</ul>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  max-contentは幅や高さに最大サイズを指定できます。
+  この例でいうと、改行されてないこの状態が最大幅ですね。
+
+  で、これは幅の指定になります。幅の指定があるという事はmargin: autoで中央寄せができます。
+  今まで内容が不定のものを中央寄せしたかったら、何かで囲って、それに中央寄せをしてもらう必要がありました。
+  しかしこれならタグ単体で中央に来ます。右寄せでもいいですね。
+
+  もちろんそれ以外でも、普通にサイズ指定で使うとか、先程のmin() max()との組み合わせるとか、使いみちは色々あるんじゃないでしょうか。
+  自分の場合だとgridと組み合わせて便利だった覚えがあります。
+</div>

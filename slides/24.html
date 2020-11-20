@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="js">正規表現の後読み</h1>
+
+<ul class="description">
+  <li>文字列の中で、指定した文字の直後を表す正規表現</li>
+  <li class="caution">Safariは非対応</li>
+</ul>
+
+<template class="playground" data-pick="script">
+  <script>
+    const text = 'ABCDEFG'
+
+    const result = text.replace(/(?<=ABCD)/, '@')
+
+    document.writeln(result)
+  </script>
+</template>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  正規表現の後読みです。
+  javascriptには長らくありませんでしたが、ようやく使えるようになりました。
+
+  正規表現の後読み、は特定の文字の直後のポイントを指すものです。
+  この例だとABCDEFGとあって、ABCDの直後を探すわけだから、つまりDとEの間の隙間を指すことになります。
+  なのでアットマークが挟まってますね。
+
+  何かの文字の後の何か、という探し方は本当によくあるので、まさに待望のという感じです。
+</div>

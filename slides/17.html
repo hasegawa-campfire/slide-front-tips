@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="js">Proxy</h1>
+
+<ul class="description">
+  <li>オブジェクトアクセスの代理になってくれるもの</li>
+  <li>様々なフックを仕込める</li>
+</ul>
+
+<template class="playground" data-pick="script">
+  <style>
+    body {
+      white-space: pre-line;
+    }
+  </style>
+
+  <script>
+    const data = {}
+
+    const proxy = new Proxy(data, {
+      get(target, prop) {
+        return target[prop] * 2
+      }
+    })
+
+    proxy.hoge = 100
+
+    document.writeln(data.hoge)
+    document.writeln(proxy.hoge)
+  </script>
+</template>
+
+<ul class="note">
+  <li>数値や文字列などプリミティブ型には使えない</li>
+</ul>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  これはまったくUIとか関係ないですが、一応取り上げます。
+
+  Proxyですが、ネットワークの話じゃなく、変数の代理になってくれるものです。
+
+  dataを元にproxyを作ると、proxyに入れた値が、dataにも入っている。
+  そしてproxyから値を出そうとすると、この処理で2倍のものが返される。
+
+  こんな感じで元のオブジェクトに被せるようにして、色々な処理を挟み込むことが出来ます。
+
+  vue.jsのリアクティブ処理も、3になってからはProxyを使ってるそうですね。
+</div>

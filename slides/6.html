@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="css">スクロールバーの消し方</h1>
+
+<ul class="description">
+  <li>::scrollbarでバーを消すとスクロールの操作自体は出来る</li>
+</ul>
+
+<template class="playground">
+  通常
+  <div class="scroll"></div>
+
+  overflow: hidden
+  <div class="scroll a"></div>
+
+  ::scrollbar none
+  <div class="scroll b"></div>
+
+  <style>
+    .scroll.a {
+      overflow: hidden;
+    }
+
+    .scroll.b::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scroll {
+      overflow: auto;
+      margin-bottom: 20px;
+      height: 90px;
+      padding: 10px;
+      border: #888 1px solid;
+    }
+
+    .scroll::before {
+      content: '';
+      display: block;
+      height: 200px;
+      background-image: linear-gradient(#ff000080, #0000ff80);
+    }
+</style>
+</template>
+
+<ul class="note">
+  <li>firefoxは <b></b>scrollbar-width: none で消えます</li>
+</ul>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  スクロールバーの消し方。
+  スクロールバーを消したい時は、だいたい overflow の hiddenじゃないかと思うんですけど、これだとスクロールが出来なくて。
+
+  だけどたまに、バーは要らないけどスクロールはしたいって事があります。
+
+  そんな時の、スクロールバーは出すけども、見えなくさせるやり方です。
+
+  特にwindows環境だとスクロールバーの影響はかなり大きいので、必要でも消したいと思うこと、割とあるんじゃないでしょうか。
+</div>

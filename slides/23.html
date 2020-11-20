@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="css">flexのアイテム間の隙間</h1>
+
+<ul class="description">
+  <li>grid同様にflexもgapプロパティで隙間を空けられる</li>
+  <li class="caution">Safariは非対応</li>
+</ul>
+
+<template class="playground">
+  <div class="flex">
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+    <div class="box">4</div>
+    <div class="box">5</div>
+  </div>
+
+  <style>
+    .flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      width: 300px;
+      border: #888 2px solid;
+    }
+
+    .box {
+      width: 80px;
+      height: 80px;
+      background-color: #ff000080;
+      text-align: center;
+      line-height: 80px;
+    }
+  </style>
+</template>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  flexのgapプロパティです。並べるアイテムの隙間を開けられます。
+  これは元々gridレイアウトで使うものでしたが、名前が変わってflexに対応しました。
+
+  今まで隙間を開けようと思ったらマージンしかなくて、でもそうするとこんな風に内側にピッタリつけるのは結構面倒な書き方が必要でした。
+  それがようやくシンプルに使えます。
+</div>

@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="js">ResizeObserver</h1>
+
+<ul class="description">
+  <li>要素のサイズの変化を検出してくれるもの</li>
+</ul>
+
+<template class="playground">
+  <div class="box"></div>
+
+  <script>
+    new ResizeObserver(entries => {
+      for (const entry of entries) {
+        entry.target.innerHTML = `
+          w: ${entry.contentRect.width}px<br>
+          h: ${entry.contentRect.height}px
+        `
+      }
+    }).observe(document.querySelector('.box'))
+  </script>
+
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      resize: both;
+      background-color: #ff000080;
+      overflow: hidden;
+      padding: 10px;
+      box-sizing: content-box;
+    }
+  </style>
+</template>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  ResizeObserverは、名前の通り、要素のリサイズを検出します。
+  ウィンドウのリサイズは昔からありましたが、要素の変化もようやく検出できるようになりました。ありがたい事です。
+</div>

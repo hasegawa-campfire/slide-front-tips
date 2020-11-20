@@ -1,0 +1,58 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="css">flex内の強制折り返し</h1>
+
+<ul class="description">
+  <li>flexで並べているアイテムを途中で折り返したい時、brの効果で改行しているように見せる案</li>
+</ul>
+
+<template class="playground">
+  <div class="flex">
+    <div>1</div>
+    <div>2</div>
+    <br>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+  </div>
+
+  <style>
+    br {
+      content: '';
+      margin: 0 9999px;
+    }
+
+    .flex {
+      display: flex;
+      flex-wrap: wrap;
+      border: #888 2px solid;
+      width: 300px;
+    }
+
+    .flex div {
+      background-color: #ff000080;
+      margin: 5px;
+      width: 60px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+    }
+  </style>
+</template>
+
+<ul class="note">
+  <li>flex自体に強制的な折返しの仕様はありません</li>
+  <li>brタグにかけられるスタイルはブラウザによってだいぶ異なります</li>
+</ul>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  flexには並んでるアイテムを自動で折り返す機能があるんですけど、実は手動では折り返すことができません。
+  なので途中で折り返したかったら、すごく横幅があって高さが全く無い、そんなタグを差し込んで無理やり改行させたりします。
+
+  けっこう強引な感じはしますけども、ただ、もしそれをbrタグでやるならば、まあbrだから改行もするよね、という何となくの納得感を醸し出すことが出来ます。
+  うん。たぶん。
+</div>

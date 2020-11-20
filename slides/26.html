@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="css">CSS Nesting Module</h1>
+
+<ul class="description">
+  <li>Sassのようにネストの形で定義出来る</li>
+  <li class="caution">将来的な仕様です</li>
+</ul>
+
+<template class="playground">
+  <div class="box"></div>
+
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: #ff000080;
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  </style>
+</template>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  Sassのようにネストの形でCSSが書けます。
+  これがCSSに無いからSassを使うという人もそれなりに多いんじゃないでしょうか。
+  だいたいSassの感覚で書けるようになるそうです。
+  待ち遠しいですね。
+</div>

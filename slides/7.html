@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="css">文字あふれにmin-width:0</h1>
+
+<ul class="description">
+  <li>flexやgridの下で表示があふれてしまう時、min-width: 0 で解決する事もある</li>
+</ul>
+
+<template class="playground">
+  min-widthなし
+  <div class="flex">
+    <div class="box">
+      aaaa bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    </div>
+  </div>
+
+  min-widthあり
+  <div class="flex">
+    <div class="box min-width">
+      aaaa bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    </div>
+  </div>
+
+  <style>
+    .flex {
+      display: flex;
+      width: 300px;
+      overflow-wrap: break-word;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: #888 2px solid;
+    }
+
+    .box {
+      background-color: #ff000080;
+    }
+
+    .min-width {
+      min-width: 0;
+    }
+  </style>
+</template>
+
+<ul class="note">
+  <li>word-break: break-all でなければ改行しない状況は構造を見直すべき</li>
+</ul>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  flexやgrid使っていると、時々こんな感じで文字列が溢れます。
+  正確には文字列を含んだこの赤い四角が、親の横幅を無視します。
+
+  そんな時、min-widthで直ることがあります。理屈はちょっと省きます。
+
+  ちなみにoverflow: hidden でも直ります。消えて困るものが無いなら、使ってもいいんじゃないでしょうか。
+
+  正直、改行のトラブルというか、サイズのトラブルはかなり種類があって、これはほんの1パターンにすぎません。
+  もしサイズが言うことを聞いてくれない時、そのサイズが外側から決まっているのか、内側から決まっているのか。
+  そのあたり衝突していないかを、注意して見るといいかもしれません。
+</div>

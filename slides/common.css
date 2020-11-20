@@ -1,0 +1,184 @@
+body {
+  position: relative;
+  transform-origin: -50px -50px;
+  width: 1400px;
+  height: max-content;
+  margin: 50px 0 0 50px;
+  font-size: 20px;
+  line-height: 1.4;
+  color: #400000;
+  scrollbar-width: none;
+  cursor: default;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  left: -50px;
+  top: -50px;
+  width: 1500px;
+  height: 170px;
+  display: block;
+  border: #ef4846 8px solid;
+  border-bottom-color: transparent;
+  pointer-events: none;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+}
+
+h1 {
+  font-size: 60px;
+}
+
+h1.center {
+  position: relative;
+  text-align: center;
+  top: 350px;
+  font-size: 80px;
+  z-index: 1;
+  text-shadow: #fff 0px -4px, #fff 4px 0px, #fff 0px 4px, #fff -4px 0px,
+    #fff 2.8px -2.8px, #fff 2.8px 2.8px, #fff -2.8px 2.8px, #fff -2.8px -2.8px;
+}
+
+h1.center::before {
+  position: absolute;
+  top: calc(50% - 250px);
+  left: calc(50% - 200px);
+  content: "";
+  width: 400px;
+  height: 400px;
+  background-image: url("./campfire-logo.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+h1.css::before,
+h1.js::before,
+h1.html::before {
+  display: inline-block;
+  position: relative;
+  top: -0.07em;
+  border: #000 4px solid;
+  border-radius: 6px;
+  margin-right: 0.5em;
+  padding: 0.15em 3px 0 3px;
+  font-size: 80%;
+  line-height: 1;
+  color: #fff;
+}
+
+h1.css::before {
+  content: "CSS";
+  border-color: #006bbf;
+  background-image: linear-gradient(to right, #006bbf 50%, #00a8e3 50%);
+}
+
+h1.js::before {
+  content: "JS";
+  border-color: #d6be00;
+  background-image: linear-gradient(to right, #d6be00 50%, #ffde00 50%);
+}
+
+h1.html::before {
+  content: "HTML";
+  border-color: #f03310;
+  background-image: linear-gradient(to right, #f03310 50%, #ff5d0e 50%);
+}
+
+a {
+  color: #ef4846;
+}
+
+.description {
+  margin-top: 1.5em;
+}
+
+.description li {
+  list-style-type: none;
+  line-height: 1.6;
+  font-size: 30px;
+}
+
+.description.large li {
+  font-size: 36px;
+}
+
+.description li::before {
+  content: "▶";
+  display: inline-block;
+  transform: translateX(-50%) scale(0.7);
+}
+
+.note li {
+  list-style-type: none;
+  font-size: 25px;
+  opacity: 0.8;
+}
+
+.note li::before {
+  content: "※";
+  display: inline-block;
+  transform: translateX(-30%) scale(0.7);
+}
+
+.caution {
+  color: #d30d0d;
+  font-weight: bold;
+}
+
+.playground {
+  border: #ccc 1px solid;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  max-height: 450px;
+  background-color: #fff;
+}
+
+.preview {
+  flex: none;
+  display: block;
+  border: none;
+  resize: horizontal;
+}
+
+code {
+  flex: auto;
+  display: block;
+  padding: 10px;
+  background-color: #f8f8f8;
+  overflow: auto;
+  white-space: pre;
+  font-family: monospace;
+  font-size: 25px;
+  color: #222;
+  line-height: 1.4;
+  outline: none;
+}
+
+.preview + code {
+  border-left: #ccc 1px solid;
+}
+
+.slide-note {
+  display: none;
+}

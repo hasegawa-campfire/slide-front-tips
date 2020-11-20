@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="css">leading-trim</h1>
+
+<ul class="description">
+  <li
+    >テキストの表示の高さから不要なスペースを削る
+    （<a href="https://medium.com/microsoft-design/leading-trim-the-future-of-digital-typesetting-d082d84b202" target="_blank">参考</a>）
+  </li>
+  <li class="caution">将来的な仕様です</li>
+</ul>
+
+<template class="playground">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP" rel="stylesheet">
+
+  <div class="text">
+    Leading
+  </div>
+
+  <div class="text noto-sans">
+    Leading
+  </div>
+
+  <style>
+    .text {
+      text-edge: cap alphabetic;
+      leading-trim: both;
+      background-color: #0000ff40;
+      font-size: 80px;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .noto-sans {
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+  </style>
+</template>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  これはもう僕の資料なんかよりも参考を見たほうが遥かに素晴らしいので、開きます。
+  夜に見かけて、一気に目がさめた素晴らしい資料です。
+
+  これCSS的には全部32pxの隙間になってるんですが、実際にはこんなバラバラの隙間に見えてしまいます。
+  これはフォントによって固有のスペースが上下にあるからなんですが、それを削ぎ落とすのがLeading-trimになります。
+  それによって整ったマージンを簡単に実現できるようになります。
+  縦の中央揃いもそうですね。CSS的には真ん中のハズなのにどう見ても上や下に寄っている。そんな事もこれで解決します。
+
+  -----------------
+
+  これは本当にフロント実装で毎度毎度しんどい所なので、一刻も早く使えるようになる日を待っています。
+
+  そんな訳でサンプル。2種類のフォント比較です。下がnoto sans。上がシステムデフォルト。
+  上下のスペースがまるで違いますね。
+  ブラウザのフォントはWebフォントでも使わない限り、必ずバラバラになる訳で、そんな中で上下のズレを調整するのがいかに不毛であるか、分かるんじゃないでしょうか。
+
+  いや、早く使いたいですね、ほんと。
+</div>

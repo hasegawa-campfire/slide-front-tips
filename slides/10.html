@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="css">CSS変数</h1>
+
+<ul class="description">
+  <li>CSSにも変数の仕組みがある</li>
+  <li>他のプロパティのようにセレクターで対象を絞り込めて、子孫へと値が継承される</li>
+</ul>
+
+<template class="playground">
+  <div class="box"></div>
+  <div class="box blue"></div>
+
+  <style>
+    :root {
+      --box-size: 150px;
+    }
+
+    .box.blue {
+      --base-color: #0000ff80;
+      --hover-color: #0000ff;
+    }
+
+    .box {
+      width: var(--box-size);
+      height: var(--box-size);
+      margin: 10px 0;
+      background-color: var(--base-color, #ff000080);
+    }
+
+    .box:hover {
+      background-color: var(--hover-color, #ff0000);
+    }
+  </style>
+</template>
+
+<ul class="note">
+  <li>:rootはページ内の最上位要素。通常ならhtml</li>
+</ul>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  CSSにも変数があります。
+  例えばSassのように定義した値をそれぞれで使うことも出来ますし、
+  例えば、こいつにはbase-colorとhover-colorが定義されてるんですが、それをこいつだけ外側から上書きして使う、という事もできます。
+</div>

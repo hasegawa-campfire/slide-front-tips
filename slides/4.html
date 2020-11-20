@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="html">HTML, BODYの省略</h1>
+
+<ul class="description">
+  <li>tbodyなど、HTMLタグの中には省略可能なものもある</li>
+</ul>
+
+<template class="playground" data-max-height="none">
+  <p>count: <span class="count">1</span></p>
+  <button onclick="countUp()">count up</button>
+
+  <script>
+    function countUp() {
+      document.querySelector('.count').textContent++
+    }
+  </script>
+
+  <style>
+    .count {
+      font-weight: bold;
+    }
+  </style>
+</template>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  では内容の紹介に移ります。
+  いきなりCSSでもjavascriptでもないんですけども。
+
+  HTMLにはタグを省略できるものがあります。
+  bodyやhtmlも省略が認められていて、その辺りを省略すると、こう、htmlがあって、scriptがあって、styleがあって、という感じで
+  まるでvue.jsか何かのような見た目になります。
+
+  とはいえ実際にはDOCTYPEと文字コードの指定くらいは、最低限付けるべきではあります。
+  ちなみにこの書き方だとscriptとstyleはbodyの中に入ることになります。上の方に書けばheadの中に入ります。
+
+  ちなみにstyleに関しては昔から平然とbodyの中に書かれたりしてきましたが、仕様として認められるようになったのは割と最近のことだったります。
+</div>

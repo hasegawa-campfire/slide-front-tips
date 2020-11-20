@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="css">スムーススクロール</h1>
+
+<ul class="description">
+  <li>scroll-behavior: smooth でスムーススクロールが可能になる</li>
+  <li class="caution">Safariは非対応</li>
+</ul>
+
+<template class="playground">
+  <a href="#box">スクロール</a>
+
+  <div id="box" class="box"></div>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .box {
+      margin: 100vh 0;
+      width: 200px;
+      height: 200px;
+      background-color: #ff000080;
+    }
+  </style>
+</template>
+
+<ul class="note">
+  <li>スクロール後の自動スナップ（scroll-snap）と合わせてよく紹介される</li>
+</ul>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  これもシンプル。
+  scroll-behaviorを使えばスムーススクロールが設定できて、こんなかんじでアンカーも滑らかに移動します。
+  すばらしいですね。Safari以外は。
+</div>

@@ -1,0 +1,174 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="js">画像検出や音声認識など（実践）</h1>
+
+<div class="video-container">
+  <video autoplay></video>
+  <div class="face"></div>
+  <div class="voice"></div>
+</div>
+
+<script>
+  const $video = document.querySelector('video')
+  const $face = document.querySelector('.face')
+  const $voice = document.querySelector('.voice')
+
+  /* 音声認識 *****************************/
+
+  const recognition = new (webkitSpeechRecognition || SpeechRecognition)()
+  recognition.lang = 'ja'
+  recognition.interimResults = true
+
+  let textClearTimer
+  let recRestartTimer
+  let isRec
+
+  function startRecognition() {
+    if (!isRec) {
+      isRec = true
+      recognition.start()
+    }
+  }
+
+  function stopRecognition() {
+    if (isRec) {
+      isRec = false
+      clearTimeout(recRestartTimer)
+      clearTimeout(textClearTimer)
+      recognition.abort()
+      $voice.textContent = ''
+    }
+  }
+
+  recognition.onresult = (e) => {
+    clearTimeout(textClearTimer)
+    $voice.textContent = e.results[0][0].transcript
+  }
+
+  recognition.onend = (e) => {
+    if (isRec) {
+      recRestartTimer = setTimeout(() => recognition.start(), 100)
+      textClearTimer = setTimeout(() => ($voice.textContent = ''), $voice.textContent.length * 100 + 500)
+    }
+  }
+
+  /* カメラ取り込み *****************************/
+
+  let captureTimer
+
+  async function startCaptureCamera() {
+    if (!captureTimer) {
+      captureCamera()
+    }
+  }
+
+  async function stopCaptureCamera() {
+    clearTimeout(captureTimer)
+    captureTimer = null
+    if ($video.srcObject) {
+      $video.srcObject.getTracks().forEach(track => track.stop())
+      $video.srcObject = null
+    }
+  }
+
+  async function captureCamera() {
+    if (!$video.srcObject || !$video.srcObject.active) {
+      try {
+        $video.srcObject = await navigator.mediaDevices.getUserMedia({ video: true })
+        $video.srcObject.oninactive = () => $face.hidden = true
+      } catch {
+        // none
+      }
+    }
+    captureTimer = setTimeout(captureCamera, 500);
+  }
+
+  /* 顔検出 *****************************/
+
+  const faceDetector = new FaceDetector()
+  let faceDetectTimer
+
+  function startFaceDetect() {
+    clearTimeout(faceDetectTimer)
+    faceDetectTimer = setTimeout(detectFace, 100)
+  }
+
+  function stopFaceDetect() {
+    clearTimeout(faceDetectTimer)
+    faceDetectTimer = null
+    $face.hidden = true
+  }
+
+  async function detectFace() {
+    faceDetectTimer = setTimeout(detectFace, 100)
+    if ($video.readyState !== 4) return
+    const faces = await faceDetector.detect($video)
+    if (faces.length && faceDetectTimer) {
+      const rect = faces[0].boundingBox
+      $face.style.left = (rect.left / $video.videoWidth * 100) + '%'
+      $face.style.top = (rect.top / $video.videoHeight * 100) + '%'
+      $face.style.width = (rect.width / $video.videoWidth * 100) + '%'
+      $face.style.height = (rect.height / $video.videoHeight * 100) + '%'
+      $face.hidden = false
+    }
+  }
+
+  addEventListener('slide-init', () => {
+    startCaptureCamera()
+    startFaceDetect()
+    startRecognition()
+  })
+
+  addEventListener('slide-fin', () => {
+    stopCaptureCamera()
+    stopFaceDetect()
+    stopRecognition()
+  })
+</script>
+
+<style>
+  .video-container {
+    position: relative;
+    width: 800px;
+    max-width: 100%;
+    margin: 20px auto 0;
+    overflow: hidden;
+  }
+
+  video {
+    width: 100%;
+  }
+
+  .face {
+    position: absolute;
+    transition: all 200ms;
+    background: center / contain no-repeat url('campfire-logo.svg');
+    transform: scale(3) translate(2%, -35%);
+  }
+
+  .voice {
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+    right: 10px;
+    color: #EF4846;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.3;
+    text-shadow:
+      #fff 0px -2px, #fff 2px 0px, #fff 0px 2px, #fff -2px 0px,
+      #fff 1.4px -1.4px, #fff 1.4px 1.4px, #fff -1.4px 1.4px, #fff -1.4px -1.4px;
+    backface-visibility: hidden;
+  }
+</style>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  という訳で実際に動かしてみたのがこちらです。楽しい。
+  ただテキストを書いて保存するだけでこういう事が出来るんですから、Webブラウザはホントたのしい環境ですね。
+
+  ちなみに音声認識はシステムのものを使っている、と思ってたんですけど、 なんかネットに繋いで処理してるみたいです。
+  だからchrome限定、オンライン限定なんだとか。
+</div>

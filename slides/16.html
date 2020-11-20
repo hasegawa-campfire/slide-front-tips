@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="js">querySelector()の:scope指定</h1>
+
+<ul class="description">
+  <li>querySelectorを実行した要素自体は:scopeで指定できる</li>
+</ul>
+
+<template class="playground">
+  <div>
+    <span id="span1"></span>
+
+    <main>
+      <span id="span2"></span>
+
+      <div>
+        <span id="span3"></span>
+      </div>
+    </main>
+  </div>
+
+  <p>&lt;main&gt;に対して、</p>
+
+  <button onclick="find('div span')">div span</button>
+  <button onclick="find(':scope div span')">:scope div span</button>
+
+  <p class="result"></p>
+
+  <script>
+    function find(sel) {
+      const list = document
+        .querySelector('main')
+        .querySelectorAll(sel)
+
+      document.querySelector('.result').textContent =
+        Array.from(list).map(el => `#${el.id}`)
+    }
+  </script>
+</template>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  querySelectorはjqueryのような指定で要素を探せます。
+  で、その時、特定の要素から探し始めることが出来るんですが、
+
+  例えば、このmainを起点にして、divの下のspanを探すとこうなります。
+  span2とspan3。3はこれですね。divの下のspan。
+
+  でもこの2はmainの直下にあってdivの下ではないです。
+  しかしよく見るとその親にdivがいるので、やっぱりこれもdivの下のspanで合っているわけです。
+  この辺りjqueryのfindとは違います。
+
+  でもあくまでmainの下だけで探したい、そういう時に:scopeを使うと、:scopeの下のdivの下のspanということで3だけになります。
+
+  あとはこれの直下だけを対象に探したい、という時にも直下セレクタと合わせて使います。
+</div>

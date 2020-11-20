@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="css">max()</h1>
+
+<ul class="description">
+  <li>calc()のようにどこにでも使えて、渡された中から最大の値を返す</li>
+</ul>
+
+<template class="playground">
+  レスポンシブ
+
+  <style>
+    body {
+      font-size: max(20px, 10vw);
+    }
+  </style>
+</template>
+
+<ul class="note">
+  <li>Sassで使うと競合します（新モジュールシステムで解決される様子）</li>
+  <li>min(), clamp()もあります</li>
+</ul>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  maxはもう見たまんま、複数の中から最大の値が取れます。
+  元々cssには幅や高さでmin maxがありますけど、これを使えばパディングでもフォントサイズでも最大最小が制御できます。
+
+  凄い便利なんですけどSassで使うと競合してエラーになります。
+  回避策として、これはmax関数ではなくてただの文字列ですよ、という感じに書けば使えるんですが、キャンプではCIのlintに怒られるようです。
+</div>

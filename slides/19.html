@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="js">IntersectionObserver</h1>
+
+<ul class="description">
+  <li>2つの要素の、重なり状態を検出するもの</li>
+  <li>だいたいビューポートとの重なり（画面内にスクロールしてきた事）の検出に使われる</li>
+</ul>
+
+<template class="playground">
+  <br><br><br>↓<br>↓<br>↓<br>↓<br>↓<br>
+
+  <div class="box"></div>
+
+  <script>
+    new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        entry.target.dataset.state = entry.isIntersecting ? 'in' : 'out'
+      }
+    }).observe(document.querySelector('.box'))
+  </script>
+
+  <style>
+    body {
+      padding-bottom: 120vh;
+      text-align: center;
+    }
+
+    .box {
+      display: inline-block;
+      margin-top: 100vh;
+      width: 200px;
+      height: 200px;
+      background-color: #ff000080;
+    }
+
+    .box::before {
+      content: attr(data-state);
+      position: fixed;
+      left: 10px;
+      top: 10px;
+    }
+
+    .result {
+      position: fixed;
+    }
+  </style>
+</template>
+
+<ul class="note">
+  <li>2つの要素は先祖や子孫の関係でなければならない</li>
+</ul>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  IntersectionObserver。2つの要素が重なっているかを検出します。
+  だいたいの場合、画面内にスクロールしてきた事を検出するのに使います。もちろんそれ以外にも使えます。
+</div>

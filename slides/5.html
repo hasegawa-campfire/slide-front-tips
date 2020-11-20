@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="css">absoluteでの幅と高さ</h1>
+
+<ul class="description">
+  <li>position:absolute で指定したwidth,heightは、left,topと同じく原点要素に倣う</li>
+</ul>
+
+<template class="playground">
+  <div class="relative">
+    <div class="static">
+      <div class="absolute">
+        <br>width: 100%
+        <br>height: 100%
+      </div>
+    </div>
+  </div>
+
+  <style>
+    ::before {
+      content: attr(class);
+    }
+
+    .relative {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      padding: 50px;
+      background-color: #ff000030;
+    }
+
+    .relative::before {
+      position: absolute;
+      left: 5px;
+      top: 5px;
+    }
+
+    .static {
+      position: static;
+      width: 100px;
+      height: 100px;
+      padding: 5px;
+      background-color: #0000ff30;
+    }
+
+    .absolute {
+      position: absolute;
+      left: 100px;
+      top: 100px;
+      width: 100%;
+      height: 100%;
+      padding: 5px;
+      background-color: #008000;
+      color: #fff;
+    }
+  </style>
+</template>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  absoluteの挙動についてなんですが、これ、relative、staticとネストして、更にその下にあるのがabsolute、緑の四角です。
+
+  これ、横幅と高さが100％になってるんですが、その100％の基準になっているのが、1つ上じゃなくて、2つ上のrelativeになっています。
+
+  要するにleftやtopと一緒って事なんですけれども。
+  たまにその事を忘れたりするので取り上げました。
+</div>

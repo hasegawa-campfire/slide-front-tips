@@ -1,0 +1,58 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="css">display:contents</h1>
+
+<ul class="description">
+  <li>指定した要素は表示されず、代わりにその子要素だけがそこに表示される</li>
+</ul>
+
+<template class="playground">
+  <div class="flex">
+    <div class="box"></div>
+
+    <div class="contents">
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+  </div>
+
+  <style>
+    .flex {
+      display: flex;
+    }
+
+    .contents {
+      display: contents;
+    }
+
+    .box {
+      width: 80px;
+      height: 80px;
+      margin: 5px;
+      background-color: #ff000080;
+    }
+</style>
+</template>
+
+<ul class="note">
+  <li>例えばtableとtrの間にdivを挟むといったHTMLの仕様を無視するような事は出来ません</li>
+  <li>あくまでも視覚的な話で、要素自体はそこにある為、例えばjavascriptで子要素のイベントを拾う事は出来ます</li>
+</ul>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  display:contentsは分かりにくいんですが、使うと表示が消えます。
+  ただしdisplay:noneとは違って子供の要素は表示されます。
+  つまり自分だけ消えて、そこには最初から中の子供しかいなかったかのように振る舞います。
+
+  この例も分かりにくいんですけど、これ、flexのアイテムが3つ並んでるように見えますが、こっちの2つはflexじゃなくてこのcontentsの子供です。
+  だけどこれはdisplay:contentsなので表示は無視されて、まるで最初から3つのboxが並んでいるかのように表示されます。
+
+  用途としては、だいたい正にこれで、つまりflexやgridは、並べるアイテムが常に直下にないといけないんですが、どうしてもその一部を何かのタグでネストしたい。
+  そういう時に使います。
+  特にgridを使いたいけどセマンティクス的にはまとめたい、というような。
+
+  あとは、::beforeと::after。
+  あれは普通、自分の内側にしか出せないものですけど、display:contentsを使うとその外に出すような使い方ができます。
+</div>

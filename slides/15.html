@@ -1,0 +1,72 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="js">addEventListener()のpassiveオプション</h1>
+
+<ul class="description">
+  <li>イベントのキャンセルが無い事を予め伝えることでパフォーマンスの向上を図る</li>
+  <li>主にスクロールイベントで使われる</li>
+</ul>
+
+<template class="playground">
+  passive: false
+  <div class="scroll" data-value="0"></div>
+
+  passive: true
+  <div class="scroll" data-value="0"></div>
+
+  <script>
+    const list = document.querySelectorAll('.scroll')
+
+    list[0].addEventListener('scroll', onScroll)
+    list[1].addEventListener('scroll', onScroll, { passive: true })
+
+    function onScroll(e) {
+      e.target.dataset.value = e.target.scrollTop
+    }
+  </script>
+
+  <style>
+    .scroll {
+      padding: 10px;
+      border: #888 2px solid;
+      overflow: auto;
+      height: 150px;
+      margin-bottom: 10px;
+    }
+
+    .scroll::before {
+      content: attr(data-value);
+      display: inline-block;
+      position: sticky;
+      top: 0;
+    }
+
+    .scroll::after {
+      content: '';
+      display: block;
+      height: 2000px;
+      background-image: linear-gradient(#ff000080, #0000ff80);
+    }
+  </style>
+</template>
+
+<ul class="note">
+  <li>特にモバイルでのスクロールに効果が期待されている</li>
+</ul>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  javascriptのイベント処理ですね。addEventListener。ここからしばらくはjavascriptのネタが続きます。
+
+  で、addEventListenerですけど、これを使う時にpassiveオプションを使うと、私はそのイベントをキャンセルしません、と宣言した事になります。
+  するとどうなるかと言うと、特にスクロールイベントが早くなります。
+
+  スクロールはユーザーが操作したら、すぐに動かなければいけないんですけども、
+  そこにイベント処理が挟まれてしまうと、果たしてこのスクロールはキャンセルされるかのどうか、それを待たなければいけなくなります。
+  もしキャンセルだったら当然動いてはいけないので。
+
+  それがpassiveなら気にする必要なくなる訳です。
+
+  とは言え、PCではほとんど効果がなくて、主にモバイルでの動きが改善されるようです。
+</div>

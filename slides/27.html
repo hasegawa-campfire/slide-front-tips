@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="css">:has()</h1>
+
+<ul class="description">
+  <li>指定した条件を内包する場合にマッチする</li>
+  <li class="caution">将来的な仕様です</li>
+</ul>
+
+<template class="playground">
+  <label>
+    <input type="checkbox">
+    チェックボックス
+  </label>
+
+  <style>
+    label:has(> input:checked) {
+      background-color: #ff000080;
+    }
+  </style>
+</template>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  has()はセレクターで、自分より後の条件を見ます。
+
+  例えばこのチェックボックスはラベルの内側にいるんですけど、チェックボックスがオンになると、外側のラベルが赤くなるという動きになります。
+  今はならないですけど。
+
+  CSSは基本的に、自分か、親の条件を見るしか無かったんですけど、has()を使えば子孫を条件に出来ます。
+  いや本当に、これが出来れば、って思える場面はすごく多いので、もうずっと待ち侘びてます。
+  ただパフォーマンス結構悪くなるんじゃないのって話もあるみたいですね。
+</div>

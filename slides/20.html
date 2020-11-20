@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="common.css">
+
+<h1 class="html">画像の遅延読み込み</h1>
+
+<ul class="description">
+  <li>imgタグにloading=lazy属性をつけるとスクロールでの遅延読み込みになる</li>
+  <li class="caution">Safariは非対応</li>
+</ul>
+
+<template class="playground">
+  <br><br><br>↓<br>↓<br>↓<br>↓<br>↓<br>
+
+  <img src="cat.png" loading="lazy" onload="alert('load')">
+
+  <style>
+    body {
+      text-align: center;
+    }
+
+    img {
+      margin-top: 100vh;
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+    }
+  </style>
+</template>
+
+<ul class="note">
+  <li>iframeにもつけられます（対応ブラウザは更に減ります）</li>
+</ul>
+
+<script src="common.js"></script>
+
+<div class="slide-note">
+  で、なら画像の遅延読み込みにも使えそうなんですが、実は画像にはそれ用のloading属性が追加されました。
+  これを指定するだけで画像が遅延読み込みするようになります。safariでなければ。
+  という訳でここからはもうsafariの出番はありません。
+</div>
