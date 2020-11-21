@@ -2,7 +2,7 @@
 
 勉強会用のスライド (2020/11/20)
 
-[Page](https://hasegawa-campfire.github.io/slide-front-tips/)
+[スライドを表示する](https://hasegawa-campfire.github.io/slide-front-tips/)
 
 ※ブラウザ対応はしてないのでChrome推奨
 
