@@ -6,7 +6,7 @@
 
 ※ブラウザ対応はしてないのでChrome推奨
 
-※実演を動かすならChromeで以下のフラグをEnabledにする必要があります
+※終盤の「実践」を動かすならChromeで以下のフラグをEnabledにする必要があります
 ```
 chrome://flags/#enable-experimental-web-platform-features
 ```
