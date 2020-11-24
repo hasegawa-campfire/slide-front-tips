@@ -5,6 +5,7 @@ const suffixPreview = `
 
 <style>
 body {
+  font-family: sans-serif;
   font-size: 25px;
   line-height: 1.4;
   cursor: default;
